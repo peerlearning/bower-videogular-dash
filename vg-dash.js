@@ -41,7 +41,7 @@ angular.module("com.2fdevs.videogular.plugins.dash", [])
                     //Returns true if the source has the standard DASH type defined OR an .mpd extension.
                     scope.isDASH = function isDASH(source) {
                         var hasDashType = dashTypeRegEx.test(source.type);
-                        var hasDashExtension = source.src.indexOf && (source.src.indexOf(".mpd") > 0);
+                        var     hasDashExtension = source.src.indexOf && (source.src.indexOf(".mpd") > 0);
 
                         return hasDashType || hasDashExtension;
                     };
@@ -62,6 +62,11 @@ angular.module("com.2fdevs.videogular.plugins.dash", [])
                                 player.startup();
                                 player.attachView(API.mediaElement[0]);
                                 player.attachSource(url);
+                            }
+
+                            // Stop debugging messages in browser console
+                            if (player) {
+                                player.getDebug().setLogToBrowserConsole(false)
                             }
                         }
                         else if (player) {

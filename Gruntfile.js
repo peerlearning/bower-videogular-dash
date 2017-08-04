@@ -24,11 +24,20 @@ module.exports = function(grunt) {
 				pushTags: false, //default: true
 				npm: false
 			}
+		},
+		uglify: {
+				 build: {
+        					src: 'vg-dash.js',
+                  dest: 'vg-dash.min.js',
+            }
 		}
 	});
 
 	grunt.loadNpmTasks('grunt-release');
+	grunt.loadNpmTasks('grunt-contrib-uglify');
 
+	// Default task(s).
+	grunt.registerTask('default', ['uglify']);
 	grunt.registerTask('major', ['release:major']);
 	grunt.registerTask('minor', ['release:minor']);
 	grunt.registerTask('patch', ['release:patch']);
